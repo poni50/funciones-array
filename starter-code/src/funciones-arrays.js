@@ -177,6 +177,40 @@ let wordsCount = [
 function greatestProduct (matrix){
 
   let max = 1;
+  let hor = 1;
+  let ver = 1; 
+  let dig = 1;
+
+  for(let i = 0; i < matrix.length; i++){
+
+    for(let j = 0; j < matrix.length - 3; j++){
+
+      for(let k = 0; k < 4; k++){
+        hor *= matrix[i][j+k];
+        ver *= matrix[j+k][i];
+        if(i + k < matrix.length){
+          dig *= matrix[j+k][i+k];
+        }
+      }
+      
+      if (hor > max){
+        max = hor;
+      }
+      if (ver > max){
+        max = ver;
+      }
+      if (dig > max){
+        max = dig;
+      }
+      hor = 1;
+      ver = 1;
+      dig = 1;
+    }
+  }
+  
+  return max;
+
+  /*
   let result = 1;
 
   //Horizontal
@@ -229,8 +263,7 @@ function greatestProduct (matrix){
       result = 1;
     }
   }
-  
-  return max;
+  */
 }
 
 let matrix = [
