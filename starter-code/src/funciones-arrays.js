@@ -1,6 +1,28 @@
 // Find the maximum
+function maxOfTwoNumbers (num1, num2){
+  if (num1 > num2){
+    return num1;
+  } else{
+    return num2;
+  }
+};
 
 // Finding Longest Word
+
+function findLongestWord (palabras){
+  let max = 0;
+  let index = 0;
+
+  for (let i = 0; i < palabras.length; i++){
+    if (palabras[i].length > max){
+      max = palabras[i].length
+      index = i;
+    }
+  }
+
+  return palabras[index];
+};
+
 let words = [
   'mystery',
   'brother',
@@ -17,13 +39,47 @@ let words = [
 console.log(findLongestWord(words));
 // Calculating a Sum
 
+function sumArray (lista){
+  let result = 0;
+
+  for (let i = 0; i < lista.length; i++){
+    result += lista[i];
+  }
+
+  return result;
+}
+
 let numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
 // Calculate the Average
 
+function averageNumbers (lista){
+  if(lista.length == 0){
+    return undefined;
+  }
+  let result = sumArray(lista);
+
+  return result / lista.length;
+}
+
 let numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 // Array of Strings
+
+function averageWordLength (lista){
+  if(lista.length == 0){
+    return undefined;
+  }
+
+  let result = 0;
+
+  for (let i = 0; i < lista.length; i++){
+    result+= lista[i].length;
+  }
+
+  return result / lista.length;
+}
+
 let wordsArr = [
   'seat',
   'correspond',
@@ -38,6 +94,21 @@ let wordsArr = [
 ];
 
 // Unique Arrays
+
+function uniquifyArray(lista){
+  if(lista.length == 0){
+    return undefined;
+  }
+
+  nueva_lista = [];
+  for(let i = 0; i < lista.length; i++){
+    if(!nueva_lista.includes(lista[i])){
+      nueva_lista.push(lista[i]);
+    }
+  }
+
+  return nueva_lista;
+} 
 let wordsUnique = [
   'crab',
   'poison',
@@ -53,6 +124,15 @@ let wordsUnique = [
 ];
 
 // Finding Elements
+
+function doesWordExist (lista, palabra){
+  if(lista.includes(palabra)){
+    return true;
+  } else{
+    return false
+  }
+
+}
 let wordsFind = [
   'machine',
   'subset',
@@ -65,6 +145,20 @@ let wordsFind = [
 ];
 
 // Counting Repetion
+function howManyTimes (lista, palabra){
+  if(lista.length == 0){
+    return undefined;
+  }
+
+  let count = 0;
+  for(let i = 0; i < lista.length; i++){
+    if (lista[i] == palabra){
+      count ++;
+    }
+  }
+
+  return count;
+}
 let wordsCount = [
   'machine',
   'matter',
@@ -79,6 +173,65 @@ let wordsCount = [
   'matter'
 ];
 // Bonus Quest
+
+function greatestProduct (matrix){
+
+  let max = 1;
+  let result = 1;
+
+  //Horizontal
+
+  for(let i = 0; i < matrix.length; i++){
+
+    for(let j = 0; j < matrix.length - 3; j++){
+
+      for(let k = 0; k < 4; k++){
+        result *= matrix[i][j+k];
+      }
+      
+      if (result > max){
+        max = result;
+      }
+      result = 1;
+    }
+  }
+
+  //Vertical
+
+  for(let i = 0; i < matrix.length; i++){
+
+    for(let j = 0; j < matrix.length - 3; j++){
+
+      for(let k = 0; k < 4; k++){
+        result *= matrix[j+k][i];
+      }
+      
+      if (result > max){
+        max = result;
+      }
+      result = 1;
+    }
+  }
+
+  //Diagonal
+
+  for(let i = 0; i < matrix.length - 3; i++){
+
+    for(let j = 0; j < matrix.length - 3; j++){
+
+      for(let k = 0; k < 4; k++){
+        result *= matrix[j+k][i+k];
+      }
+      
+      if (result > max){
+        max = result;
+      }
+      result = 1;
+    }
+  }
+  
+  return max;
+}
 
 let matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
